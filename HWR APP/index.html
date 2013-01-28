@@ -31,7 +31,7 @@
 </head> 
 <body onload="init()"> 
 	
-<div data-role="page" id="Layout" data-theme="a">    
+<div data-role="page" id="loginPage" data-theme="a">    
     <!-- Header ----------------------------->
 	<div data-role="header">
     	<h1>Login</h1>
@@ -42,18 +42,19 @@
    	<form id="loginForm">
         <div data-role="fieldcontain" class="ui-hide-label">
             <label for="username">Username:</label>
-            <input type="text" name="un" id="username" value="" placeholder="Username" />
+            <input type="text" name="username" id="username" value="" placeholder="Username" />
         </div>
 
         <div data-role="fieldcontain" class="ui-hide-label">
             <label for="password">Password:</label>
-            <input type="password" name="pw" id="password" value="" placeholder="Passwort" />
+            <input type="password" name="password" id="password" value="" placeholder="Passwort" />
         </div>
 
-        <input type="button" value="Login" id="submitButton" onclick="handleLogin()">
-		<hr />
+        <input type="button" value="Login" id="submitButton" onClick="handleLogin()">
+        </form>
+			<hr />
             Noch keinen Account? <a href="SignIn.html">Registrieren</a>
-    </form>
+      </form>
     	
     </div>
     
