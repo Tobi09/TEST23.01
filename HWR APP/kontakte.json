@@ -1,0 +1,16 @@
+{
+		"kontakte": [
+			{
+				"name": "Lustiger Klasu";	
+				"matrnr": "2432423";
+			},
+			{
+				"name": "Hungriger Martin";	
+				"matrnr": "5464564";
+			},
+			{
+				"name": "Dummer Horst";	
+				"matrnr": "2398342";
+			}
+	]
+}

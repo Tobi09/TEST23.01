@@ -24,11 +24,10 @@ function handleLogin() {
 		console.log("serverabfrage");
 		console.log("username: " + u);
 		console.log("password: " + p);
-		var url = "http://garten-kabel-pflasterbau.de/hwr-com/hallodu.php?un="+u+"&pw="+p;
+		var url = "http://garten-kabel-pflasterbau.de/hwr-com/loghandler.php?un="+u+"&pw="+p;
 		console.log(url);  
 		$.post(url, function (data) {
 			console.log("request gesendet");
-			console.log(data.logincheck);
 			if (data == '({"logincheck":"true"});') {
 				//store
                 window.localStorage["username"] = u;
@@ -55,4 +54,13 @@ function handleLogin() {
 
 function deviceReady() {  
  $("#loginForm").on("submit",handleLogin);
+}
+
+function handleLogoff() {
+	console.log("handleLogoff");  
+	window.localStorage.removeItem("username");
+	window.localStorage.removeItem("password");
+   	
+	console.log("gehe zur Login Seite");
+	$.mobile.changePage("index.html");
 }

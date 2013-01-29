@@ -1,0 +1,7 @@
+{
+"key":"Zeichenkette",
+"obj":{"ObjKey":"ObjWert"},
+"array":[Element1, Element2],
+"boolean":true,
+"zahl":1
+}

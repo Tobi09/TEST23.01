@@ -9,6 +9,7 @@
 
 <!-- eigene CSS -->
 <link href="CSS/navbar.css" rel="stylesheet" type="text/css"/>
+<link href="CSS/HWR_Standart.css" rel="stylesheet" type="text/css"/>
 <!-- /eigene CSS -->
 <!-- /CSS Links ----------------->
 
@@ -29,7 +30,7 @@
 </head> 
 <body> 
 	
-<div data-role="page" id="Layout" data-theme="a">    
+<div data-role="page" id="Layout" data-theme="b">    
     <!-- Header ----------------------------->
 	<div data-role="header">
     	<h1>Test Startseite</h1>
@@ -37,12 +38,27 @@
     
     <!-- Inhalt ----------------------------->
     <div data-role="content">
+    <form action="eintragen.php" method="post">
+Dein Username:<br>
+<input type="text" size="24" maxlength="50"
+name="username"><br><br>
+
+Dein Passwort:<br>
+<input type="password" size="24" maxlength="50"
+name="passwort"><br>
+
+Passwort wiederholen:<br>
+<input type="password" size="24" maxlength="50"
+name="passwort2"><br>
+
+<input type="submit" value="Abschicken">
+</form>
     	
     </div>
     
     <!-- Footer ----------------------------->
     <!-- NAVBAR ----------------------------->
-    <div data-role="footer" class="navbar">
+    <div data-role="footer" class="navbar" data-theme="b">
    		<div data-role="navbar" class="navbar" data-iconpos="top" id="nav">
             <ul>
                 <li><a href="Kontakte.html" id="kontakte" data-icon="custom">Kontakte</a></li>
