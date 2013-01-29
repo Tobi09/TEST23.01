@@ -118,6 +118,127 @@ function handleRegister() {
     return false;
 }
 
+//Edit User 
+function editUser(edittype, name) {
+	console.log("edittype: " + edittype);
+	console.log("name: " + name);
+	var input;
+	if(name=='pw') {
+			input = "<form id='changePW'><input type='password' name='password' id='password' placeholder='neues passwort' class='required'><input type='password' name='password2' id='password2' placeholder='passwort wiederholen' class='required'><a rel='close' data-role='button' href='#' onclick='changeUser(\"pw\")'>Speichern</a><a rel='close' data-role='button' href='#' id='simpleclose'>Abbrechen</a></form>"; 
+		} else if(name=='un') {
+			input ="<form id='changeUN'><input type='text' name='username' id='username' placeholder='neuer username' class='required'><a rel='close' data-role='button' href='#' onclick='changeUser(\"un\")'>Speichern</a><a rel='close' data-role='button' href='#' id='simpleclose'>Abbrechen</a></form>";
+		} else { //name = 'em'
+			input = "<form id='changeEM'><input type='email' name='email' id='email' placeholder='neue Email' class='required'><a rel='close' data-role='button' href='#' onclick='changeUser(\"em\")'>Speichern</a><a rel='close' data-role='button' href='#' id='simpleclose'>Abbrechen</a></form>"; 
+		}
+  $(document).delegate(edittype, 'click', function()
+	$(this).simpledialog({
+      'mode' : 'blank',
+        'prompt': false,
+        'forceInput': false,
+        'useModal':true,
+        'fullHTML' : 
+			input
+	})
+	)
+}
+
+function changeUser(updatetyp) {
+	var email = window.localStorage.getItem("hwr-com-email");
+	console.log("account email: " + email);
+	if (email != undefined) {
+		switch (updatetyp) {
+			case "un":
+				var un = $("#username", "#changeUN").val();
+				console.log(un);
+				if (un != undefined) {
+					console.log("un geändert - start sql");
+					var url = "http://garten-kabel-pflasterbau.de/hwr-com/updateUser.php?un="+un+"&em="+email;
+					console.log(url);
+					//--- Request
+					$.post(url, function (data) {
+						console.log("request gesendet");
+						if (data == '(true);') {
+							alert("Username geändert!");
+							navigator.notification.alert("Username geändert!", function() {});
+						} else {
+							alert("Fehler beim update");
+							navigator.notification.alert("Fehler beim update", function() {});
+						}	
+					});
+					//---
+				} else {
+					console.log("Usernamen eingeben");
+					alert("Usernamen eingeben");
+					navigator.notification.alert("Usernamen eingeben", function() {});		
+				}
+			break;
+			case "pw":
+				var pw = $("#password", "#changePW").val();
+				var pw2 = $("#password2", "#changePW").val();
+				console.log("passwort1: " + pw);
+				console.log("passwort2: " + pw2);
+				if (pw == undefined || pw != pw2) {
+					console.log("eingabefehler");
+					alert("Eingabefehler");
+					navigator.notification.alert("Eingabefehler", function() {});		
+				} else {
+					console.log("passwort geändert - start sql");
+					pw=MD5(pw);
+					var url = "http://garten-kabel-pflasterbau.de/hwr-com/updateUser.php?pw="+pw+"&em="+email;
+					console.log(url);
+					//--- Request
+					$.post(url, function (data) {
+						console.log("request gesendet");
+						if (data == '(true);') {
+							window.localStorage.setItem("hwr-com-password", pw2);
+							alert("Passwort geändert!");
+							navigator.notification.alert("Username geändert!", function() {});
+						} else {
+							alert("Fehler beim update");
+							navigator.notification.alert("Fehler beim update", function() {});
+						}	
+					});
+					//---
+					alert("Passwort geändert!");
+					navigator.notification.alert("Passwort geändert!", function() {});
+				}	
+			break;
+			case "em":
+				var newem = $("#email", "#changeEM").val();
+				console.log(newem);
+				if (newem != undefined) {
+					console.log("email geändert - start sql");
+					var url = "http://garten-kabel-pflasterbau.de/hwr-com/updateUser.php?newem="+newem+"&em="+email;
+					console.log(url);
+					//--- Request
+					$.post(url, function (data) {
+						console.log("request gesendet");
+						if (data == '(true);') {
+							window.localStorage.setItem("hwr-com-email", newem);
+							alert("Email geändert!");
+							navigator.notification.alert("Username geändert!", function() {});
+						} else {
+							alert("Fehler beim update");
+							navigator.notification.alert("Fehler beim update", function() {});
+						}	
+					});
+					//---
+					alert("Email geändert!");
+					navigator.notification.alert("Email geändert!", function() {});
+				} else {
+					console.log("email leer");
+					alert("Bitte beim ändern auch email angeben!");
+					navigator.notification.alert("Bitte beim ändern auch email angeben!", function() {});		
+				}
+			break;
+		}
+	} else {
+		console.log("änderungen nicht möglich da keine email im speicher");
+		alert("nicht möglich da keine email");
+		navigator.notification.alert("nicht möglich da keine email", function() {});				
+	}
+}
+	
 //Delete Account 
 //--------------------------------------------------------------------------------------
 
@@ -127,9 +248,9 @@ $(document).delegate('#deleteAccount', 'click', function() {
     'prompt' : 'delete Account?',
     'useModal': true,
     'buttons' : {
-      'delete': { //Account l�schen
+      'delete': { //Account löschen
         click: function () {
-			console.log("Account l�schen!");
+			console.log("Account löschen!");
 			var email = window.localStorage["hwr-com-email"];
 			if (email!=null) { // l�schen
 				var url = "http://garten-kabel-pflasterbau.de/hwr-com/deleteAccount.php?em="+email;
