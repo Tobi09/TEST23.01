@@ -39,27 +39,33 @@ function handleLogin() {
                 window.localStorage.setItem("hwr-com-password", p);    
 				console.log("gehe zur naechsten Seite");
 				$.mobile.changePage("Kontakte.html");
-				//navigator.notification.alert("Your login succesed", function() {});
+				navigator.notification.alert("Your login succesed", function() {}, "Error", "OK");
 			} else {
 				window.localStorage.removeItem("hwr-com-password");
 				console.log("keine Daten");
 				console.log("false login")
-				//alert("Your login failed");
-				navigator.notification.alert("Your login failed", function() {});
+				alert("Your login failed");
+				navigator.notification.alert("Your login failed", function() {}, "Error", "OK");
 			}
 		});
     } else { 
         //Thanks Igor!
 		console.log("keine angaben");
-		//alert("You must enter a Email and password");
-		navigator.notification.alert("You must enter a username and password");
+		alert("You must enter a Email and password");
+		navigator.notification.alert("You must enter a username and password", function() {}, "Error", "OK");
     }
 	$("#submitButton").removeAttr("disabled");
     return false;
 }
 
-function deviceReady() {  
- $("#loginForm").on("submit",handleLogin);
+function deviceReady() {
+	console.log("deviceReady");
+	$("#loginPage").on("pageinit",function() {
+		console.log("pageinit run");
+		$("#loginForm").on("submit",handleLogin);
+		checkPreAuth();
+	});
+	$.mobile.changePage("#loginPage");
 }
 //Logoff
 //---------------------------------------------------------------------------------------------------
@@ -101,20 +107,20 @@ function handleRegister() {
 					$.mobile.changePage("index.html");
 				} else if (data == '({"Registed":"double email"});') {
 					console.log("Email schon vorhanden(Bereits angemeldet), failed")
-					alert("Email bereits vorhanden");
-					navigator.notification.alert("Email always registed, Your Registration failed", function() {});
+					//alert("Email bereits vorhanden");
+					navigator.notification.alert("Email always registed, Your Registration failed", function() {}, "Error", "OK");
 				}
 			});
 		} else {
 			console.log("passwöerter nicht identisch");
-			alert("Passwörter nicht identisch");
-			navigator.notification.alert("Passwörter nicht identisch", function() {});
+			//alert("Passwörter nicht identisch");
+			navigator.notification.alert("Passwörter nicht identisch", function() {}, "Error", "OK");
 		}
     } else { 
         //Thanks Igor!
 		console.log("keine angaben");
 		//alert("You must enter a username and password");
-		navigator.notification.alert("You must enter a email and password");
+		navigator.notification.alert("You must enter a email and password", function() {}, "Error", "OK");
     }
 	$("#RegisterSubmitButton").removeAttr("disabled");
     return false;
@@ -162,17 +168,17 @@ function changeUser(updatetyp) {
 						console.log("request gesendet");
 						if (data == '(true);') {
 							//alert("Username geÃ¤ndert!");
-							navigator.notification.alert("Username geÃ¤ndert!", function() {});
+							navigator.notification.alert("Username geÃ¤ndert!", function() {}, "Error", "OK");
 						} else {
 							//alert("Fehler beim update");
-							navigator.notification.alert("Fehler beim update", function() {});
+							navigator.notification.alert("Fehler beim update", function() {}, "Error", "OK");
 						}	
 					});
 					//---
 				} else {
 					console.log("Usernamen eingeben");
 					//alert("Usernamen eingeben");
-					navigator.notification.alert("Usernamen eingeben", function() {});		
+					navigator.notification.alert("Usernamen eingeben", function() {}, "Error", "OK");
 				}
 			break;
 			case "pw":
@@ -183,7 +189,7 @@ function changeUser(updatetyp) {
 				if (pw == undefined || pw != pw2) {
 					console.log("eingabefehler");
 					//alert("Eingabefehler");
-					navigator.notification.alert("Eingabefehler", function() {});		
+					navigator.notification.alert("Eingabefehler", function() {}, "Error", "OK");
 				} else {
 					console.log("passwort geÃ¤ndert - start sql");
 					pw=MD5(pw);
@@ -195,15 +201,15 @@ function changeUser(updatetyp) {
 						if (data == '(true);') {
 							window.localStorage.setItem("hwr-com-password", pw2);
 							//alert("Passwort geÃ¤ndert!");
-							navigator.notification.alert("Username geÃ¤ndert!", function() {});
+							navigator.notification.alert("Username geÃ¤ndert!", function() {}, "complete", "OK");
 						} else {
 							//alert("Fehler beim update");
-							navigator.notification.alert("Fehler beim update", function() {});
+							navigator.notification.alert("Fehler beim update", , function() {}, "complete", "OK");
 						}	
 					});
 					//---
 					//alert("Passwort geÃ¤ndert!");
-					navigator.notification.alert("Passwort geÃ¤ndert!", function() {});
+					navigator.notification.alert("Passwort geändert!", , function() {}, "complete", "OK");
 				}	
 			break;
 			case "em":
@@ -219,26 +225,26 @@ function changeUser(updatetyp) {
 						if (data == '(true);') {
 							window.localStorage.setItem("hwr-com-email", newem);
 							//alert("Email geÃ¤ndert!");
-							navigator.notification.alert("Username geÃ¤ndert!", function() {});
+							navigator.notification.alert("Username geä¤ndert!", function() {}, "complete", "OK");
 						} else {
 							//alert("Fehler beim update");
-							navigator.notification.alert("Fehler beim update", function() {});
+							navigator.notification.alert("Fehler beim update", function() {}, "Error", "OK");
 						}	
 					});
 					//---
 					alert("Email geÃ¤ndert!");
-					navigator.notification.alert("Email geÃ¤ndert!", function() {});
+					navigator.notification.alert("Email geÃ¤ndert!", function() {}, "complete", "OK");
 				} else {
 					console.log("email leer");
 					//alert("Bitte beim Ã¤ndern auch email angeben!");
-					navigator.notification.alert("Bitte beim Ã¤ndern auch email angeben!", function() {});		
+					navigator.notification.alert("Bitte beim Ändern auch email angeben!", function() {}, "Error", "OK");	
 				}
 			break;
 		}
 	} else {
 		console.log("Ã¤nderungen nicht mÃ¶glich da keine email im speicher");
 		//alert("nicht mÃ¶glich da keine email");
-		navigator.notification.alert("nicht mÃ¶glich da keine email", function() {});				
+		navigator.notification.alert("nicht mÃ¶glich da keine email", function() {}, "Error", "OK");	
 	}
 }
 
@@ -268,14 +274,14 @@ $(document).delegate('#deleteAccount', 'click', function() {
 					$.mobile.changePage("index.html");
 				} else {
 					console.log("löschen nicht möglich, sever failed")
-					alert("server process abgebrochen");
-					navigator.notification.alert("sorry, delete not possible, server abbort", function() {});
+					//alert("server process abgebrochen");
+					navigator.notification.alert("sorry, delete not possible, server abbort", function() {}, "Error", "OK");
 				}
 			});
 			} else {
 				console.log("löschen nicht möglich, keine email");
-				alert("process abgebrochen, keine email");
-				navigator.notification.alert("sorry, delete not possible, no email");
+				//alert("process abgebrochen, keine email");
+				navigator.notification.alert("sorry, delete not possible, no email", function() {}, "Error", "OK");
 			}			
         },
 		 icon: "delete"
