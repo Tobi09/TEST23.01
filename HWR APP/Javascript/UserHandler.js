@@ -1,3 +1,12 @@
+document.addEventListener("deviceready", onDeviceReady, false);
+
+// Cordova is ready
+//
+    function onDeviceReady() {
+        // Empty
+    }
+
+
 //Login
 //---------------------------------------------------------------------------------------------------
 function init() {
