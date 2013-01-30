@@ -42,15 +42,15 @@ function handleLogin() {
 				window.localStorage.removeItem("hwr-com-password");
 				console.log("keine Daten");
 				console.log("false login")
-				alert("Your login failed");
+				//alert("Your login failed");
 				navigator.notification.alert("Your login failed", function() {});
 			}
 		});
     } else { 
         //Thanks Igor!
 		console.log("keine angaben");
-		alert("You must enter a Email and password");
-		//navigator.notification.alert("You must enter a username and password");
+		//alert("You must enter a Email and password");
+		navigator.notification.alert("You must enter a username and password");
     }
 	$("#submitButton").removeAttr("disabled");
     return false;
@@ -94,7 +94,7 @@ function handleRegister() {
 				if (data == '({"Registed":"new user registed"});') {
 					//store
 					window.localStorage.setItem("hwr-com-email", u);
-					window.localStorage("hwr-com-password", p);    
+					window.localStorage.setItem("hwr-com-password", p);    
 					console.log("gehe zur anmelde Seite");
 					$.mobile.changePage("index.html");
 				} else if (data == '({"Registed":"double email"});') {
@@ -111,7 +111,7 @@ function handleRegister() {
     } else { 
         //Thanks Igor!
 		console.log("keine angaben");
-		alert("You must enter a username and password");
+		//alert("You must enter a username and password");
 		navigator.notification.alert("You must enter a email and password");
     }
 	$("#RegisterSubmitButton").removeAttr("disabled");
@@ -151,24 +151,24 @@ function changeUser(updatetyp) {
 				var un = $("#username", "#changeUN").val();
 				console.log(un);
 				if (un != undefined) {
-					console.log("un geändert - start sql");
+					console.log("un ge�ndert - start sql");
 					var url = "http://garten-kabel-pflasterbau.de/hwr-com/updateUser.php?un="+un+"&em="+email;
 					console.log(url);
 					//--- Request
 					$.post(url, function (data) {
 						console.log("request gesendet");
 						if (data == '(true);') {
-							alert("Username geändert!");
+							//alert("Username geändert!");
 							navigator.notification.alert("Username geändert!", function() {});
 						} else {
-							alert("Fehler beim update");
+							//alert("Fehler beim update");
 							navigator.notification.alert("Fehler beim update", function() {});
 						}	
 					});
 					//---
 				} else {
 					console.log("Usernamen eingeben");
-					alert("Usernamen eingeben");
+					//alert("Usernamen eingeben");
 					navigator.notification.alert("Usernamen eingeben", function() {});		
 				}
 			break;
@@ -179,7 +179,7 @@ function changeUser(updatetyp) {
 				console.log("passwort2: " + pw2);
 				if (pw == undefined || pw != pw2) {
 					console.log("eingabefehler");
-					alert("Eingabefehler");
+					//alert("Eingabefehler");
 					navigator.notification.alert("Eingabefehler", function() {});		
 				} else {
 					console.log("passwort geändert - start sql");
@@ -191,15 +191,15 @@ function changeUser(updatetyp) {
 						console.log("request gesendet");
 						if (data == '(true);') {
 							window.localStorage.setItem("hwr-com-password", pw2);
-							alert("Passwort geändert!");
+							//alert("Passwort geändert!");
 							navigator.notification.alert("Username geändert!", function() {});
 						} else {
-							alert("Fehler beim update");
+							//alert("Fehler beim update");
 							navigator.notification.alert("Fehler beim update", function() {});
 						}	
 					});
 					//---
-					alert("Passwort geändert!");
+					//alert("Passwort geändert!");
 					navigator.notification.alert("Passwort geändert!", function() {});
 				}	
 			break;
@@ -215,10 +215,10 @@ function changeUser(updatetyp) {
 						console.log("request gesendet");
 						if (data == '(true);') {
 							window.localStorage.setItem("hwr-com-email", newem);
-							alert("Email geändert!");
+							//alert("Email geändert!");
 							navigator.notification.alert("Username geändert!", function() {});
 						} else {
-							alert("Fehler beim update");
+							//alert("Fehler beim update");
 							navigator.notification.alert("Fehler beim update", function() {});
 						}	
 					});
@@ -227,14 +227,14 @@ function changeUser(updatetyp) {
 					navigator.notification.alert("Email geändert!", function() {});
 				} else {
 					console.log("email leer");
-					alert("Bitte beim ändern auch email angeben!");
+					//alert("Bitte beim ändern auch email angeben!");
 					navigator.notification.alert("Bitte beim ändern auch email angeben!", function() {});		
 				}
 			break;
 		}
 	} else {
 		console.log("änderungen nicht möglich da keine email im speicher");
-		alert("nicht möglich da keine email");
+		//alert("nicht möglich da keine email");
 		navigator.notification.alert("nicht möglich da keine email", function() {});				
 	}
 }
