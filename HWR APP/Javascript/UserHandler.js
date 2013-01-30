@@ -16,8 +16,8 @@ function checkPreAuth() {
     }
 }
 
-function beep(times) {
-	navigator.notification.beep(times);
+function beep() {
+	navigator.notification.beep(2);
 }
 
 function handleLogin() {
