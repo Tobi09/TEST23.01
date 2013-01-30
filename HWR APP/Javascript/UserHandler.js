@@ -1,12 +1,3 @@
-document.addEventListener("deviceready", onDeviceReady, false);
-
-// Cordova is ready
-//
-    function onDeviceReady() {
-        // Empty
-    }
-
-
 //Login
 //---------------------------------------------------------------------------------------------------
 function init() {
@@ -23,29 +14,6 @@ function checkPreAuth() {
         $("#password", form).val(window.localStorage.getItem("hwr-com-password"));
         handleLogin();
     }
-}
- function showAlert() {
-        navigator.notification.alert(
-            'You are the winner!',  // message
-            'Game Over',            // title
-            'Done'                  // buttonName
-        );
-    }
-
-    // Beep three times
-    //
-function playBeep() {
-        navigator.notification.beep(3);
-    }
-
-    // Vibrate for 2 seconds
-    //
-function vibrate() {
-        navigator.notification.vibrate(2000);
-    }
-	
-function beep() {
-	navigator.notification.beep(2);
 }
 
 function handleLogin() {
