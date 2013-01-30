@@ -16,6 +16,9 @@ function checkPreAuth() {
     }
 }
 
+function beep(times) {
+	navigator.notification.beep(times);
+}
 
 function handleLogin() {
 	console.log("handleLogin");
@@ -113,7 +116,7 @@ function handleRegister() {
 			});
 		} else {
 			console.log("passwöerter nicht identisch");
-			//alert("Passwörter nicht identisch");
+			alert("Passwörter nicht identisch");
 			navigator.notification.alert("Passwörter nicht identisch", function() {}, "Error", "OK");
 		}
     } else { 
