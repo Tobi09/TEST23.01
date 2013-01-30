@@ -7,6 +7,7 @@ function init() {
 
 
 function checkPreAuth() {
+	console.log("checkPreAuth");
     var form = $("#loginForm");
     if(window.localStorage.getItem("hwr-com-email") != undefined && window.localStorage.getItem("hwr-com-password") != undefined) {
         $("#username", form).val(window.localStorage.getItem("hwr-com-email"));
@@ -14,6 +15,7 @@ function checkPreAuth() {
         handleLogin();
     }
 }
+
 
 function handleLogin() {
 	console.log("handleLogin");
@@ -119,6 +121,7 @@ function handleRegister() {
 }
 
 //Edit User 
+
 function editUser(edittype, name) {
 	console.log("edittype: " + edittype);
 	console.log("name: " + name);
@@ -130,7 +133,7 @@ function editUser(edittype, name) {
 		} else { //name = 'em'
 			input = "<form id='changeEM'><input type='email' name='email' id='email' placeholder='neue Email' class='required'><a rel='close' data-role='button' href='#' onclick='changeUser(\"em\")'>Speichern</a><a rel='close' data-role='button' href='#' id='simpleclose'>Abbrechen</a></form>"; 
 		}
-  $(document).delegate(edittype, 'click', function()
+  $(document).delegate(edittype, 'click', function() {
 	$(this).simpledialog({
       'mode' : 'blank',
         'prompt': false,
@@ -139,7 +142,7 @@ function editUser(edittype, name) {
         'fullHTML' : 
 			input
 	})
-	)
+	});
 }
 
 function changeUser(updatetyp) {
@@ -238,7 +241,7 @@ function changeUser(updatetyp) {
 		navigator.notification.alert("nicht möglich da keine email", function() {});				
 	}
 }
-	
+
 //Delete Account 
 //--------------------------------------------------------------------------------------
 
