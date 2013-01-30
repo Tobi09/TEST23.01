@@ -1,16 +1,9 @@
-	// Wait for Cordova to load
-    //
-    document.addEventListener("deviceready", onDeviceReady, true);
-
-    // Cordova is ready
-    //
     function onDeviceReady() {
+		console.log("test on device ready");
 		alert("on device ready!!!!");
 		navigator.notification.alert("PhoneGap is working");
     }
 
-    // Show a custom alert
-    //
     function showAlert() {
         navigator.notification.alert(
             'You are the winner!',  // message
