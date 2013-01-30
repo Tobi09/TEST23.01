@@ -15,7 +15,26 @@ function checkPreAuth() {
         handleLogin();
     }
 }
+ function showAlert() {
+        navigator.notification.alert(
+            'You are the winner!',  // message
+            'Game Over',            // title
+            'Done'                  // buttonName
+        );
+    }
 
+    // Beep three times
+    //
+function playBeep() {
+        navigator.notification.beep(3);
+    }
+
+    // Vibrate for 2 seconds
+    //
+function vibrate() {
+        navigator.notification.vibrate(2000);
+    }
+	
 function beep() {
 	navigator.notification.beep(2);
 }
