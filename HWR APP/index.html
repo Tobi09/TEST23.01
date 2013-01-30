@@ -14,7 +14,7 @@
 <!-- /CSS Links ----------------->
 
 <!-- Javascript ------------------------------------------->
-<script type="text/javascript" charset="utf-8" src="cordova-2.3.0.js"></script>
+
 
 <script src="Jquery/jquery-1.6.4.min.js" type="text/javascript"></script>
 <script src="Jquery/jquery.mobile-1.2.0.min.js" type="text/javascript"></script>
@@ -24,7 +24,7 @@
 <script src="Javascript/dialogscript.js" type="text/javascript"></script>
 <!-- /eigenes Javascript -->
 <!-- Cordova -->
-
+<script type="text/javascript" charset="utf-8" src="cordova-2.3.0.js"></script>
 <!-- /Cordova -->
 <!-- /Javascript --------------->
 
@@ -41,9 +41,9 @@
     <!-- Inhalt ----------------------------->
     <div data-role="content">
 	
-	<p><a href="#" onclick="showAlert(); return false;" type="button">Show Alert</a></p>
-    <p><a href="#" onclick="playBeep(); return false;" type="button">Play Beep</a></p>
-    <p><a href="#" onclick="vibrate(); return false;" type="button">Vibrate</a></p>
+	<p><a href="#" onclick="showAlert(); return false;">Show Alert</a></p>
+    <p><a href="#" onclick="playBeep(); return false;">Play Beep</a></p>
+    <p><a href="#" onclick="vibrate(); return false;">Vibrate</a></p>
 	 
    	<form id="loginForm">
         <div data-role="fieldcontain" class="ui-hide-label">
@@ -56,7 +56,7 @@
             <input type="password" name="password" id="password" value="" placeholder="Passwort" />
         </div>
 
-        <input type="button" value="Login" id="submitButton" onClick="handleLogin()">
+        <input type="button" value="Login" id="submitButton" onClick="handleLogin(); return false;">
         </form>
 			<hr />
             Noch keinen Account? <a href="SignIn.html">Registrieren</a>
