@@ -226,12 +226,12 @@ function changeUser(updatetyp) {
 							navigator.notification.alert("Username ge√§ndert!", function() {}, "complete", "OK");
 						} else {
 							//alert("Fehler beim update");
-							navigator.notification.alert("Fehler beim update", , function() {}, "complete", "OK");
+							navigator.notification.alert("Fehler beim update", function() {}, "complete", "OK");
 						}	
 					});
 					//---
 					//alert("Passwort ge√§ndert!");
-					navigator.notification.alert("Passwort ge‰ndert!", , function() {}, "complete", "OK");
+					navigator.notification.alert("Passwort ge‰ndert!", function() {}, "complete", "OK");
 				}	
 			break;
 			case "em":
